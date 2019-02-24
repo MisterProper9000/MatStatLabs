@@ -1,0 +1,288 @@
+\documentclass[a4]{article}
+\pagestyle{myheadings}
+
+%%%%%%%%%%%%%%%%%%%
+% Packages/Macros %
+%%%%%%%%%%%%%%%%%%%
+\usepackage{mathrsfs}
+
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\lhead{}
+\chead{}
+\rhead{}
+\lfoot{}
+\cfoot{} 
+\rfoot{\normalsize\thepage}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\newcommand{\RomanNumeralCaps}[1]
+    {\MakeUppercase{\romannumeral #1}}
+
+\usepackage{amssymb,latexsym}  % Standard packages
+\usepackage[utf8]{inputenc}
+\usepackage[russian]{babel}
+\usepackage{MnSymbol}
+\usepackage{mathrsfs}
+\usepackage{amsmath,amsthm}
+\usepackage{indentfirst}
+\usepackage{graphicx}%,vmargin}
+\usepackage{graphicx}
+\graphicspath{{pictures/}} 
+\usepackage{verbatim}
+\usepackage{color}
+
+
+
+
+
+
+
+
+
+\DeclareGraphicsExtensions{.pdf,.png,.jpg}% -- настройка картинок
+
+\usepackage{epigraph} %%% to make inspirational quotes.
+\usepackage[all]{xy} %for XyPic'a
+\usepackage{color} 
+\usepackage{amscd} %для коммутативных диграмм
+%\usepackage[colorlinks,urlcolor=red]{hyperref}
+
+%\renewcommand{\baselinestretch}{1.5}
+%\sloppy
+%\usepackage{listings}
+%\lstset{numbers=left}
+%\setmarginsrb{2cm}{1.5cm}{1cm}{1.5cm}{0pt}{0mm}{0pt}{13mm}
+
+
+\newtheorem{Lemma}{Лемма}[section]
+\newtheorem{Proposition}{Предложение}[section]
+\newtheorem{Theorem}{Теорема}[section]
+\newtheorem{Corollary}{Следствие}[section]
+\newtheorem{Remark}{Замечание}[section]
+\newtheorem{Definition}{Определение}[section]
+\newtheorem{Designations}{Обозначение}[section]
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%% 
+%Сношение с оглавлением% 
+%%%%%%%%%%%%%%%%%%%%%%%% 
+\usepackage{tocloft} 
+\renewcommand{\cftdotsep}{2} %частота точек
+\renewcommand\cftsecleader{\cftdotfill{\cftdotsep}}
+\renewcommand{\cfttoctitlefont}{\hspace{0.38\textwidth} \LARGE\bfseries} 
+\renewcommand{\cftsecaftersnum}{.}
+\renewcommand{\cftsubsecaftersnum}{.}
+\renewcommand{\cftbeforetoctitleskip}{-1em} 
+\renewcommand{\cftaftertoctitle}{\mbox{}\hfill \\ \mbox{}\hfill{\footnotesize Стр.}\vspace{-0.5em}} 
+%\renewcommand{\cftchapfont}{\normalsize\bfseries \MakeUppercase{\chaptername} } 
+%\renewcommand{\cftsecfont}{\hspace{1pt}} 
+\renewcommand{\cftsubsecfont}{\hspace{1pt}} 
+%\renewcommand{\cftbeforechapskip}{1em} 
+\renewcommand{\cftparskip}{3mm} %определяет величину отступа в оглавлении
+\setcounter{tocdepth}{5} 
+
+
+
+   
+   
+%\renewcommand{\thelikesection}{(\roman{likesection})}
+%%%%%%%%%%%
+% Margins %
+%%%%%%%%%%%
+\addtolength{\textwidth}{0.7in}
+\textheight=630pt
+\addtolength{\evensidemargin}{-0.4in}
+\addtolength{\oddsidemargin}{-0.4in}
+\addtolength{\topmargin}{-0.4in}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%Переопределение chapter%%%%%% 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\empline}{\mbox{}\newline} 
+\newcommand{\likechapterheading}[1]{ 
+\begin{center} 
+\textbf{\MakeUppercase{#1}} 
+\end{center} 
+\empline} 
+
+%%%%%%%Запиливание переопределённого chapter в оглавление%%%%%% 
+\makeatletter 
+\renewcommand{\@dotsep}{2} 
+\newcommand{\l@likechapter}[2]{{\bfseries\@dottedtocline{0}{0pt}{0pt}{#1}{#2}}} 
+\makeatother 
+\newcommand{\likechapter}[1]{ 
+\likechapterheading{#1} 
+\addcontentsline{toc}{likechapter}{\MakeUppercase{#1}}} 
+
+
+
+
+
+\usepackage{xcolor}
+\usepackage{hyperref}
+\definecolor{linkcolor}{HTML}{000000} % цвет ссылок
+\definecolor{urlcolor}{HTML}{AA1622} % цвет гиперссылок
+ 
+\hypersetup{pdfstartview=FitH,  linkcolor=linkcolor,urlcolor=urlcolor, colorlinks=true}
+
+%%%%%%%%%%%%
+% Document %
+%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%главы -- section*%%%%%%
+%%%%section -- subsection%%%%
+%subsection -- subsubsection%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\def \newstr {\medskip \par \noindent} 
+
+
+
+\begin{document}
+\def\contentsname{\LARGE{Содержание}}
+\thispagestyle{empty}
+\begin{center} 
+
+\vspace{2cm} 
+{\Large \sc Санкт-Петербургский Политехнический}\\
+\vspace{2mm}
+{\Large \sc Университет} им. {\Large\sc Петра Великого}\\
+\vspace{1cm}
+{\large \sc Институт прикладной математики и механики\\ 
+\vspace{0.5mm}
+\textsc{}}\\ 
+\vspace{0.5mm}
+{\large\sc Кафедра прикладной математики}\\
+\vspace{15mm}
+
+
+%\rule[0.5ex]{\linewidth}{2pt}\vspace*{-\baselineskip}\vspace*{3.2pt} 
+%\rule[0.5ex]{\linewidth}{1pt}\\[\baselineskip] 
+{\huge \sc Лабораторная работа №$1$
+\vspace{6mm}
+
+Всякие распределения
+ }
+\vspace*{2mm}
+%\rule[0.7ex]{\linewidth}{1pt}\vspace*{-\baselineskip}\vspace{3.2pt} 
+%\rule[0.5ex]{\linewidth}{2pt}\\ 
+
+
+\vspace{1cm}
+
+{\sc $3$ курс$,$ группа $33631/2$}
+
+\vspace{2cm} 
+Студент группы $33631/2$ \hfill Д. А. Плаксин\\
+\vspace{1cm}
+Преподаватель \hfill Баженов А. Н.\\
+\vspace{20mm} 
+
+\end{center} 
+%\author{Я}
+\begin{center}
+\vfill {\large\textsc{Санкт-Петербург}}\\ 
+2019 г.
+\end{center}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\ \\[4cm]
+
+%\rm
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+\pagestyle{plain}
+
+%\begin{center}
+%\begin{abstract} 
+
+%\end{abstract}
+
+%\end{center}
+
+\newpage
+\tableofcontents{}
+\newpage
+
+
+\section{Постановка задачи}
+
+Любыми средствами сгенерировать выборки размеров $10,$ $50,$ $100,$ $1000$ элементов для $5$ти распределений:
+
+\begin{enumerate}
+
+\item $N(x,0,1) = \frac{1}{\sqrt{2\pi}}e^{-\frac{x^2}{2}}$
+\item $C(x,0,1) = \frac{1}{\pi(1+x^2)}$
+\item $L\left( x,0,\frac{1}{\sqrt{2}}\right) = \frac{1}{\sqrt{2}}e^{-\sqrt{2}\vert x\vert}$
+\item $P(\lambda,k) = \frac{\lambda^k}{k!}e^{-\lambda}$
+\item  $
+M(x,-\sqrt{3}, \sqrt{3}) = 
+ \begin{cases}
+   \frac{1}{2\sqrt{3}} &\vert x\vert \leqslant \sqrt{3}\\
+   0 &\vert x\vert > \sqrt{3}
+ \end{cases}
+$
+\end{enumerate}
+
+
+Построить гистограмму и график плотности распределения.
+
+
+\section{Теория}
+
+Плотность вероятности есть способ задания вероятностой меры в $\mathbb{R}^n. $
+
+\section{Реализация}
+Для генерации выборки был использован $Python\;3.7$: модуль $random$ библиотеки $numpy$ для генерации случайных чисел с различными распределениями и библиотека $matplotlib$ для построения графиков и гистограмм.
+
+Распределение Пуассона было взято с $\lambda = 7.$
+\newpage
+\section{Результаты}
+\begin{center}
+
+\vspace{-11cm}
+\includegraphics[width=1.3\textwidth,natwidth=725pt,natheight=770]{distribution_normal.png} \textbf{Нормальное распределение}
+
+\vspace{-9cm}
+\includegraphics[width=1.3\textwidth,natwidth=725pt,natheight=770]{distribution_laplace.png} \textbf{Распределение Лапласа}
+
+\newpage
+\par \textcolor{white}{sas}%a little bit 
+
+\vspace{-11cm}
+\includegraphics[width=1.3\textwidth,natwidth=725pt,natheight=770]{distribution_cauchy2.png} \textbf{Распределение Коши}
+
+\vspace{-9cm}
+\includegraphics[width=1.3\textwidth,natwidth=725pt,natheight=770]{distribution_poisson.png} \textbf{Распределение Пуассона}
+
+\newpage
+\par \textcolor{white}{sas}
+
+\vspace{-11cm}
+\includegraphics[width=1.3\textwidth,natwidth=725pt,natheight=770]{distribution_uniform.png} \textbf{Равномерное распределение}
+
+\end{center}
+
+
+\section{Выводы}
+\par Как видно из графиков $\--$ при увеличении размера выборки построенная гистограмма точнее приближает график соответствующего распределения.
+
+
+
+\section{Литература}
+
+Модуль numpy $\--$ \href{a}{https://physics.susu.ru/vorontsov/language/numpy.html}
+
+Формулы распределений $\--$ \href{d}{https://vk.com/doc184549949\_491827451}
+
+\section{Приложения}
+
+Код лаборатрной $\--$ \href{a}{https://github.com/MisterProper9000/MatStatLabs/blob/master/MatStatLab1.py}
+
+Код отчёта $\--$ \href{a}{https://github.com/MisterProper9000/MatStatLabs/MatStatLab1.tex}
+
+\end{document}
