@@ -162,10 +162,10 @@
 
 %\rule[0.5ex]{\linewidth}{2pt}\vspace*{-\baselineskip}\vspace*{3.2pt} 
 %\rule[0.5ex]{\linewidth}{1pt}\\[\baselineskip] 
-{\huge \sc Лабораторная работа №$1$
+{\huge \sc Лабораторная работа №$1$\\
+ Сравнение функций плотности распределения вероятностей и гистограмм, для выборок различных размеров
 \vspace{6mm}
 
-Всякие распределения
  }
 \vspace*{2mm}
 %\rule[0.7ex]{\linewidth}{1pt}\vspace*{-\baselineskip}\vspace{3.2pt} 
@@ -213,20 +213,29 @@
 
 Любыми средствами сгенерировать выборки размеров $10,$ $50,$ $100,$ $1000$ элементов для $5$ти распределений:
 
-\begin{enumerate}
+\begin{equation}\label{eqn:normal}
+N(x,0,1) = \frac{1}{\sqrt{2\pi}}e^{-\frac{x^2}{2}}
+\end{equation} 
 
-\item $N(x,0,1) = \frac{1}{\sqrt{2\pi}}e^{-\frac{x^2}{2}}$
-\item $C(x,0,1) = \frac{1}{\pi(1+x^2)}$
-\item $L\left( x,0,\frac{1}{\sqrt{2}}\right) = \frac{1}{\sqrt{2}}e^{-\sqrt{2}\vert x\vert}$
-\item $P(\lambda,k) = \frac{\lambda^k}{k!}e^{-\lambda}$
-\item  $
+\begin{equation}\label{eqn:cauchy}
+ C(x,0,1) = \frac{1}{\pi(1+x^2)}
+ \end{equation}
+ 
+ \begin{equation}\label{eqn:laplace}
+ L\left( x,0,\frac{1}{\sqrt{2}}\right) = \frac{1}{\sqrt{2}}e^{-\sqrt{2}\vert x\vert}
+ \end{equation}
+ 
+ \begin{equation}\label{eqn:poisson}
+ P(\lambda,k) = \frac{\lambda^k}{k!}e^{-\lambda}
+\end{equation}  
+
+\begin{equation}\label{eqn:uniform}
 M(x,-\sqrt{3}, \sqrt{3}) = 
  \begin{cases}
    \frac{1}{2\sqrt{3}} &\vert x\vert \leqslant \sqrt{3}\\
    0 &\vert x\vert > \sqrt{3}
  \end{cases}
-$
-\end{enumerate}
+\end{equation}
 
 
 Построить гистограмму и график плотности распределения.
@@ -239,31 +248,21 @@ $
 \section{Реализация}
 Для генерации выборки был использован $Python\;3.7$: модуль $random$ библиотеки $numpy$ для генерации случайных чисел с различными распределениями и библиотека $matplotlib$ для построения графиков и гистограмм.
 
-Распределение Пуассона было взято с $\lambda = 7.$
-\newpage
+Распределение Пуассона \eqref{eqn:poisson} было взято с $\lambda = 7.$
 \section{Результаты}
+
 \begin{center}
 
-\vspace{-11cm}
-\includegraphics[width=1.3\textwidth,natwidth=725pt,natheight=770]{distribution_normal.png} \textbf{Нормальное распределение}
+\includegraphics[width=\textwidth]{distribution_normal.png} 
+\textbf{Нормальное распределение \eqref{eqn:normal}}
 
-\vspace{-9cm}
-\includegraphics[width=1.3\textwidth,natwidth=725pt,natheight=770]{distribution_laplace.png} \textbf{Распределение Лапласа}
+\includegraphics[width=\textwidth]{distribution_laplace.png} \textbf{Распределение Лапласа \eqref{eqn:laplace}}
 
-\newpage
-\par \textcolor{white}{sas}%a little bit 
+\includegraphics[width=\textwidth]{distribution_cauchy2.png} \textbf{Распределение Коши \eqref{eqn:cauchy}}
 
-\vspace{-11cm}
-\includegraphics[width=1.3\textwidth,natwidth=725pt,natheight=770]{distribution_cauchy2.png} \textbf{Распределение Коши}
+\includegraphics[width=\textwidth]{distribution_poisson.png} \textbf{Распределение Пуассона \eqref{eqn:poisson}}
 
-\vspace{-9cm}
-\includegraphics[width=1.3\textwidth,natwidth=725pt,natheight=770]{distribution_poisson.png} \textbf{Распределение Пуассона}
-
-\newpage
-\par \textcolor{white}{sas}
-
-\vspace{-11cm}
-\includegraphics[width=1.3\textwidth,natwidth=725pt,natheight=770]{distribution_uniform.png} \textbf{Равномерное распределение}
+\includegraphics[width=\textwidth]{distribution_uniform.png} \textbf{Равномерное распределение \eqref{eqn:uniform}}
 
 \end{center}
 
@@ -275,14 +274,14 @@ $
 
 \section{Литература}
 
-Модуль numpy $\--$ \href{a}{https://physics.susu.ru/vorontsov/language/numpy.html}
+\href{https://physics.susu.ru/vorontsov/language/numpy.html}{Модуль numpy}
 
-Формулы распределений $\--$ \href{d}{https://vk.com/doc184549949\_491827451}
+\href{https://vk.com/doc184549949\_491827451}{Формулы распределений}
 
 \section{Приложения}
 
-Код лаборатрной $\--$ \href{a}{https://github.com/MisterProper9000/MatStatLabs/blob/master/MatStatLab1.py}
+\href{https://github.com/MisterProper9000/MatStatLabs/blob/master/MatStatLab1.py}{Код лаборатрной}
 
-Код отчёта $\--$ \href{a}{https://github.com/MisterProper9000/MatStatLabs/blob/master/MatStatLab1.tex}
+\href{https://github.com/MisterProper9000/MatStatLabs/blob/master/MatStatLab1.tex}{Код отчёта}
 
 \end{document}
