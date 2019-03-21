@@ -32,8 +32,35 @@
 \graphicspath{{pictures/}} 
 \usepackage{verbatim}
 \usepackage{color}
+\usepackage[nottoc,numbib]{tocbibind}
+\usepackage{float}
 
-
+\usepackage{listings}
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+ 
+\lstdefinestyle{mystyle}{
+    backgroundcolor=\color{backcolour},   
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{magenta},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\footnotesize,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,                 
+    numbers=left,                    
+    numbersep=5pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=2
+}
+ 
+\lstset{style=mystyle}
 
 \usepackage{url}
 \urldef\myurl\url{foo%.com}
@@ -68,10 +95,10 @@
 
 
 
-%%%%%%%%%%%%%%%%%%%%%%%% 
-%Сношение с оглавлением% 
-%%%%%%%%%%%%%%%%%%%%%%%% 
-\usepackage{tocloft} 
+%%%%%%%%%%%%%%%%%%%%%%% 
+%Подготовка оглавления% 
+%%%%%%%%%%%%%%%%%%%%%%% 
+\usepackage[titles]{tocloft}
 \renewcommand{\cftdotsep}{2} %частота точек
 \renewcommand\cftsecleader{\cftdotfill{\cftdotsep}}
 \renewcommand{\cfttoctitlefont}{\hspace{0.38\textwidth} \LARGE\bfseries} 
@@ -85,7 +112,10 @@
 %\renewcommand{\cftbeforechapskip}{1em} 
 \renewcommand{\cftparskip}{3mm} %определяет величину отступа в оглавлении
 \setcounter{tocdepth}{5} 
-
+\renewcommand{\listoffigures}{\begingroup %добавляем номер в список иллюстраций
+\tocsection
+\tocfile{\listfigurename}{lof}
+\endgroup}
 
 
    
@@ -118,7 +148,6 @@
 \newcommand{\likechapter}[1]{ 
 \likechapterheading{#1} 
 \addcontentsline{toc}{likechapter}{\MakeUppercase{#1}}} 
-
 
 
 
@@ -160,7 +189,11 @@
 \vspace{15mm}
 %\rule[0.5ex]{\linewidth}{2pt}\vspace*{-\baselineskip}\vspace*{3.2pt} 
 %\rule[0.5ex]{\linewidth}{1pt}\\[\baselineskip] 
-{\huge \sc Лабораторная работа №$2$
+{\huge \sc Лабораторная работа №$2$\\
+\vspace{0.1cm}
+Характеристики положения\\
+\vspace{0.5cm}
+выборки
 \vspace{6mm}
  }
 \vspace*{2mm}
@@ -171,7 +204,7 @@
 {\sc $3$ курс$,$ группа $33631/2$}
 
 \vspace{2cm} 
-Студент группы $33631/2$ \hfill Д. А. Плаксин\\
+Студент \hfill Д. А. Плаксин\\
 \vspace{1cm}
 Преподаватель \hfill Баженов А. Н.\\
 \vspace{20mm} 
@@ -201,19 +234,21 @@
 \newpage
 \tableofcontents{}
 \newpage
+\listoffigures
+\newpage
 
 \section{Постановка задачи}
 
-Любыми средствами сгенерировать выборки размеров $20,$ $60,$ $100$ элементов для $5$ти распределений. Для каждой выборки вычислить $\overline{x},\; med\; x,\; Z_R,\; Z_Q,\; Z_{tr},$ при $r = \frac{n}{4}.$
+Любыми средствами сгенерировать выборки размеров $20,$ $60,$ $100$ элементов для $5$ти распределений \cite{distr_formulas}. Для каждой выборки вычислить $\overline{x},\; med\; x,\; Z_R,\; Z_Q,\; Z_{tr},$ при $r = \frac{n}{4}.$
 
 Распределения:
-\begin{itemize}
+\begin{enumerate}
 \item Стандартное нормальное распределение
 \item Стандартное распределение Коши
 \item Распределение Лапласа с коэффициентом масштаба $\sqrt{2}$ и нулевым коэффициентом сдвига.
 \item Равномерное распределение на отрезке $\left[-\sqrt{3}, \sqrt{3}\right]$
-\item Распределение Пуассона со значением матожидания равным трём.
-\end{itemize}
+\item Распределение Пуассона со значением матожидания равным двум.
+\end{enumerate}
 
 \begin{comment}
 \begin{equation}\label{eqn:normal}
@@ -246,80 +281,117 @@ M(x,-\sqrt{3}, \sqrt{3}) =
 \begin{enumerate}
 \item Выборочное среднее:
 $
-\overline{x} = \frac{1}{n}\sum\limits_{i=1}^n x_i \hfill  \cite{average}
+\overline{x} = \frac{1}{n}\sum_{i=1}^n x_i \hfill  \cite{average}
 $
 \item Выборочная медиана:
 $
 med\; x = \begin{cases}
-x_{k+1} & n = 2k+1\\
-\frac{x_k+x_{k+1}}{2} & n = 2k
+x_{k+1}, & n = 2k+1\\
+\frac{1}{2}\left(x_k+x_{k+1}\right), & n = 2k
 \end{cases} \hfill  \cite{med}
 $
 \item Полусумма экстремальных значений:
 $
-Z_R = \frac{x_1+x_n}{2} \hfill  \cite{mean_extr}
+Z_R = \frac{1}{2}\left(x_1+x_n\right) \hfill  \cite{mean_extr}
 $
 \item Полусумма квартилей:
 $
-Z_Q = \frac{Z_{\frac{1}{4}}+Z_{\frac{3}{4}}}{2} \hfill  \cite{quartiles}}
+Z_Q = \frac{1}{2}\left(Z_{\frac{1}{4}}+Z_{\frac{3}{4}}\right) \hfill  \cite{quartiles}
 $
 \item Усечённое среднее:
 $
-Z_{tr} = \frac{1}{n - 2r}\sum\limits_{i=r+1}^{n-r} x_i \hfill  \cite{cut_mean}
+Z_{tr} = \frac{1}{n - 2r}\sum_{i=r+1}^{n-r} x_i \hfill  \cite{cut_mean}
 $
 \end{enumerate}
 
 \section{Реализация}
-Для генерации выборки был использован $Python\;3.7$: модуль $random$ библиотеки $numpy$ для генерации случайных чисел с различными распределениями. Также с помощью библиотеки $numpy$ были вычислены характеристики положения.
+Для генерации выборки был использован $Python\;3.7$: модуль $random$ библиотеки $numpy$ \cite{numpy} для генерации случайных чисел с различными распределениями. Также с помощью библиотеки $numpy$ были вычислены характеристики положения.
 
-После вычисления характеристик положения находится среднее значение и дисперсия: $E(z) = \frac{1}{n}\sum\limits_{i=1}^n z_i,\; D(z) = E\left(z^2\right) - E^2(z)$
+После вычисления характеристик положения $1000$ раз находится среднее значение и дисперсия: $E(z) = \frac{1}{n}\sum_{i=1}^n z_i,\; D(z) = E\left(z^2\right) - E^2(z).$
 
 \newpage
 \section{Результаты}
-\begin{center}
 
-\includegraphics[width=\textwidth]{normal.png}
-\textbf{Среднее ормальное распределение}
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\textwidth]{normalFix.png}
+  \caption{Стандартное нормальное распределение:}
+\end{figure}
 
-\includegraphics[width=\textwidth]{cauchy.png} \textbf{Стандартное распределение Коши}
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\textwidth]{cauchy.png} 
+  \caption{Стандартное распределение Коши}
+\end{figure}
 
-\includegraphics[width=\textwidth]{laplace.png} \textbf{Распределение Лапласа}
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\textwidth]{laplaceFix.png} 
+  \caption{Распределение Лапласа}
+\end{figure}
 
-\includegraphics[width=\textwidth]{uniform.png} \textbf{Равномерное распределение}
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\textwidth]{uniformFix.png}
+  \caption{Равномерное распределение}
+\end{figure}
 
-\includegraphics[width=\textwidth]{poisson.png} \textbf{Распределение Пуассона}
-\end{center}
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\textwidth]{poissonFix.png} 
+  \caption{Распределение Пуассона}
+\end{figure}
 
+\section{Обсуждение}
+\par При вычислении средних значений пришлось отбрасывать некоторое число знаков после запятой, так как получаемая дисперсия не могла гарантировать получаемое точное значение. \par Иными словами дисперсия может гарантировать порядок точности среднего значения только до первого значащего знака после запятой в дисперсии включительно. \par Единственным исключением [в отбрасывании знаков после запятой] стало стандартное распределение Коши, так как оно имеет бесконечную дисперсию, а значит может гарантировать сколь угодно большую точность.
 
 \section{Выводы}
-\par Как видно из графиков $\--$ при увеличении размера выборки построенная гистограмма точнее приближает график соответствующего распределения.
+
+\par В процессе работы вычислены значения характеристик положения для определённых распределений на выборках фиксированной мощности и получено следующее ранжирование характеристик положения:
+
+\begin{enumerate}
+    \item Стандартное нормальное распределение $$\overline{x} < Z_{tr} < Z_Q < med\;x < Z_R$$
+    
+    \item Стандартное распределение Коши $$med\;x < Z_Q < Z_{tr} < \overline{x} < Z_R$$
+    
+    \item Распределение Лапласа (коэффициент масштаба $\sqrt{2}$ коэффициент сдвига равен нулю) $$med\;x < Z_{tr} < \overline{x} < Z_Q < Z_R$$
+    
+    \item Равномерное распределение на отрезке $\left[-\sqrt{3},\sqrt{3}\right]$ $$Z_R < \overline{x} < Z_{tr} < Z_Q < med\;x$$
+    
+    \item Распределение Пуассона (значение мат ожидания равно $3$) $$\overline{x} < Z_{tr} < Z_Q < med\;x < Z_R$$
+    
+\end{enumerate}
 
 
 
-\section{Литература}
-\addcontentsline{toc}{section}{Список используемой литературы}
- 
-%далее сам список используевой литературы
 \begin{thebibliography}{}
-    \bibitem{numpy}  https://physics.susu.ru/vorontsov/language/numpy.html  -  Модуль numpy
+    \bibitem{numpy}  Модуль numpy  -  https://physics.susu.ru/vorontsov/language/numpy.html
     
-    \bibitem{distr_formulas}  https://vk.com/doc184549949\_491827451  -  Формулы распределений
+    \bibitem{distr_formulas}  
+    Формулы распределений  -  https://vk.com/doc184549949\_491827451
     
-    \bibitem{average}  https://en.wikipedia.org/wiki/Sample\_mean\_and\_covariance  -  Выборочное среднее
+    \bibitem{average}  
+    Выборочное среднее  -  https://en.wikipedia.org/wiki/Sample\_mean\_and\_covariance
     
-    \bibitem{med}  http://femto.com.ua/articles/part\_1/2194.html  -  Выборочная медиана
+    \bibitem{med}  
+    Выборочная медиана  -  http://femto.com.ua/articles/part\_1/2194.html
     
-    \bibitem{mean_extr}  https://studopedia.info/8-56888.html  -  Полусумма экстремальных значений
+    \bibitem{mean_extr}  
+    Полусумма экстремальных значений  -  https://studopedia.info/8-56888.html
     
-    \bibitem{quartiles}  https://studfiles.net/preview/2438125/page:13/  -  Квартили
+    \bibitem{quartiles}  
+    Квартили  -  https://studfiles.net/preview/2438125/page:13/
     
-    \bibitem{cut_mean}  https://ole-olesko.livejournal.com/15773.html  -  Усечённое среднее
+    \bibitem{cut_mean}  Усечённое среднее  -  https://ole-olesko.livejournal.com/15773.html
 \end{thebibliography}
 
 \section{Приложения}
 
-\href{https://github.com/MisterProper9000/MatStatLabs/blob/master/MatStatLab2/MatStatLab2.py}{Код лаборатрной}
+ 
+Код отчёта:\; \url{https://github.com/MisterProper9000/MatStatLabs/blob/master/MatStatLab2/MatStatLab2.tex}
 
-\href{https://github.com/MisterProper9000/MatStatLabs/blob/master/MatStatLab2/MatStatLab2.tex}{Код отчёта}
+Код лаборатрной:\; \url{https://github.com/MisterProper9000/MatStatLabs/blob/master/MatStatLab2/MatStatLab2.py}
+
+\lstinputlisting[language=Python]{MatStatLab2.py}
 
 \end{document}
