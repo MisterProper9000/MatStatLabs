@@ -279,29 +279,29 @@ M(x,-\sqrt{3}, \sqrt{3}) =
 \section{Теория}
 
 \begin{enumerate}
-\item Выборочное среднее:
-$
-\overline{x} = \frac{1}{n}\sum_{i=1}^n x_i \hfill  \cite{average}
-$
-\item Выборочная медиана:
-$
+\item Выборочное среднее \cite{average}:
+\begin{equation}\label{eqn:average}
+\overline{x} = \frac{1}{n}\sum_{i=1}^n x_i \hfill  
+\end{equation}
+\item Выборочная медиана \cite{med}:
+\begin{equation}
 med\; x = \begin{cases}
 x_{k+1}, & n = 2k+1\\
 \frac{1}{2}\left(x_k+x_{k+1}\right), & n = 2k
-\end{cases} \hfill  \cite{med}
-$
-\item Полусумма экстремальных значений:
-$
-Z_R = \frac{1}{2}\left(x_1+x_n\right) \hfill  \cite{mean_extr}
-$
-\item Полусумма квартилей:
-$
-Z_Q = \frac{1}{2}\left(Z_{\frac{1}{4}}+Z_{\frac{3}{4}}\right) \hfill  \cite{quartiles}
-$
-\item Усечённое среднее:
-$
-Z_{tr} = \frac{1}{n - 2r}\sum_{i=r+1}^{n-r} x_i \hfill  \cite{cut_mean}
-$
+\end{cases} \hfill  \label{eqn:med}
+\end{equation}
+\item Полусумма экстремальных значений \cite{mean_extr}:
+\begin{equation}
+Z_R = \frac{1}{2}\left(x_1+x_n\right) \hfill  \label{eqn:mean_extr}
+\end{equation}
+\item Полусумма квартилей \cite{quartiles}:
+\begin{equation}
+Z_Q = \frac{1}{2}\left(Z_{\frac{1}{4}}+Z_{\frac{3}{4}}\right) \hfill  \label{eqn:quartiles}
+\end{equation}
+\item Усечённое среднее \cite{cut_mean}:
+\begin{equation}
+Z_{tr} = \frac{1}{n - 2r}\sum_{i=r+1}^{n-r} x_i \hfill  \label{eqn:cut_mean}
+\end{equation}
 \end{enumerate}
 
 \section{Реализация}
