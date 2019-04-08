@@ -116,6 +116,10 @@
 \tocsection
 \tocfile{\listfigurename}{lof}
 \endgroup}
+\renewcommand{\listoftables}{\begingroup %добавляем номер в список иллюстраций
+\tocsection
+\tocfile{\listtablename}{lot}
+\endgroup}
 
 
    
@@ -234,7 +238,7 @@
 \newpage
 \tableofcontents{}
 \newpage
-\listoffigures
+\listoftables{}
 \newpage
 
 \section{Постановка задачи}
@@ -307,40 +311,130 @@ Z_{tr} = \frac{1}{n - 2r}\sum_{i=r+1}^{n-r} x_i \hfill  \label{eqn:cut_mean}
 \section{Реализация}
 Для генерации выборки был использован $Python\;3.7$: модуль $random$ библиотеки $numpy$ \cite{numpy} для генерации случайных чисел с различными распределениями. Также с помощью библиотеки $numpy$ были вычислены характеристики положения.
 
-После вычисления характеристик положения $1000$ раз находится среднее значение и дисперсия: $E(z) = \frac{1}{n}\sum_{i=1}^n z_i,\; D(z) = E\left(z^2\right) - E^2(z).$
+После вычисления характеристик положения $1000$ раз находится среднее значение и дисперсия: 
+\begin{equation}
+E(z) = \frac{1}{n}\sum_{i=1}^n z_i
+\end{equation} 
+\begin{equation}
+D(z) = E\left(z^2\right) - E^2(z)
+\end{equation}
+
+
 
 \newpage
 \section{Результаты}
 
-\begin{figure}[H]
-  \centering
-  \includegraphics[width=\textwidth]{normalFix.png}
-  \caption{Стандартное нормальное распределение:}
-\end{figure}
+\begin{table}[H]
+\caption{\label{tab:normal} Стандартное нормальное распределение.}
+\begin{center}
+\begin{tabular}{|c|c|c|c|c|c|}
+\hline
+$n = 20$ & average & med & $Z_R$ & $Z_Q$ & $Z_{tr},\;r=\frac{n}{4}$\\
+\hline
+$E =$ & $-0.00$ & $-0.00$ & $0.0$ & $0.00$ & $-0.01$\\
+\hline
+$D =$ & $0.051763$ & $0.072023$ & $0.149073$ & $0.058764$ & $0.059323$\\
+\hline
+$n = 60$ & average & med & $Z_R$ & $Z_Q$ & $Z_{tr},\;r=\frac{n}{4}$\\
+\hline
+$E =$ & $0.00$ & $0.00$ & $-0.0$ & $-0.00$ & $-0.00$\\
+\hline
+$D =$ & $0.016322$ & $0.026125$ & $0.110309$ & $0.020489$ & $0.020389$\\
+\hline
+$n = 100$ & average & med & $Z_R$ & $Z_Q$ & $Z_{tr},\;r=\frac{n}{4}$\\
+\hline
+$E =$ & $0.000$ & $-0.00$ & $-0.00$ & $-0.00$ & $-0.00$\\
+\hline
+$D =$ & $0.009563$ & $0.015479$ & $0.096256$ & $0.012569$ & $0.012224$\\
+\hline
+\end{tabular}
+\end{center}
+\end{table}
 
-\begin{figure}[H]
-  \centering
-  \includegraphics[width=\textwidth]{cauchy.png} 
-  \caption{Стандартное распределение Коши}
-\end{figure}
+\begin{table}[H]
+\caption{\label{tab:cauchy} Стандартное распределение Коши.}
+\begin{center}
+\begin{tabular}{|c|c|c|c|c|c|}
+\hline
+$n = 20$   & average & med & $Z_R$ & $Z_Q$ & $Z_{tr},\;r=\frac{n}{4}$\\ \hline
+$E =$      & 	$3.414266$    &	$-0.012522$   &	$-5.262327$   &	$-0.027313$   &	$0.020763$\\ \hline
+$D =$       &	$12977.113689$ &	$0.130212$   & 	$12626.531931$ &	$0.371684$    &	$0.150542$\\    \hline
+					
+$n = 60$   & average & med & $Z_R$ & $Z_Q$ & $Z_{tr},\;r=\frac{n}{4}$\\ \hline
+$E =$   &    	$-1.180135$   &	$-0.008143$   &	$-69.304468$  &	$0.007723$ &   	$-0.006201$\\   \hline
+$D =$      & 	$1424.446598$ &	$0.038886$   & 	$6240734.028690$ &	$0.086309$ &   	$0.042207$\\   \hline 
+					
+$n = 100$   & average & med & $Z_R$ & $Z_Q$ & $Z_{tr},\;r=\frac{n}{4}$\\ \hline
+$E =$      & 	$0.811064$    &	$-0.003271$   &	$30.434787$  & 	$0.002690$  &  	$-0.008544 $\\  \hline
+$D =$    &  	$350.070803$  &	$0.023004$    &	$1465401.042218$ &	$0.054476$ &   	$0.025649$\\    
+\hline
+\end{tabular}
+\end{center}
+\end{table}
 
-\begin{figure}[H]
-  \centering
-  \includegraphics[width=\textwidth]{laplaceFix.png} 
-  \caption{Распределение Лапласа}
-\end{figure}
+\begin{table}[H]
+\caption{\label{tab:laplace} Распределение Лапласа.}
+\begin{center}
+\begin{tabular}{|c|c|c|c|c|c|}
+\hline
+$n = 20$    & average & med & $Z_R$ & $Z_Q$ & $Z_{tr},\;r=\frac{n}{4}$\\ \hline 
+$E = $    &  	$-0.01$  & 	$-0.01$   &	$-0.0$   &	$0.00$    &	$-0.00$   \\ \hline
+$D = $     & 	$0.047943$  &  	$0.031492$    &	$0.436478$    &	$0.047849$    &	$0.031600$    \\ \hline
+					
+$n = 60$  & average & med & $Z_R$ & $Z_Q$ & $Z_{tr},\;r=\frac{n}{4}$\\ \hline
+$E = $     & 	$0.00$    &	$-0.00$   &	$-0.0$   &	$-0.00$   &	$-0.00$   \\ \hline
+$D =$      & 	$0.017707$   & 	$0.010050$   & 	$0.455793$    &	$0.014958$    &	$0.010114$    \\ \hline
+					
+$n = 100$   & average & med & $Z_R$ & $Z_Q$ & $Z_{tr},\;r=\frac{n}{4}$\\ \hline
+$E =$      & 	$0.005$    &	$0.004$    &	$0.0$    &	$0.00$    &	$-0.000$   \\ \hline
+$D = $     & 	$0.009733$    &	$0.006307$   & 	$0.409248$  &  	$0.010233$    &	$0.006262$    \\ 
+\hline
+\end{tabular}
+\end{center}
+\end{table}
 
-\begin{figure}[H]
-  \centering
-  \includegraphics[width=\textwidth]{uniformFix.png}
-  \caption{Равномерное распределение}
-\end{figure}
+\begin{table}[H]
+\caption{\label{tab:uniform} Равномерное распределение.}
+\begin{center}
+\begin{tabular}{|c|c|c|c|c|c|}
+\hline
+$n = 20$  & average & med & $Z_R$ & $Z_Q$ & $Z_{tr},\;r=\frac{n}{4}$\\ \hline
+$E =$       &	$-0.00$  & 	$-0.0$  & 	$0.00$    &	$-0.00$   &	$0.00$  \\ \hline  
+$D =$       &	$0.046929$    &	$0.126544$    &	$0.013805$    &	$0.070389$   & 	$0.098176$    \\ \hline
+					
+$n = 60$  & average & med & $Z_R$ & $Z_Q$ & $Z_{tr},\;r=\frac{n}{4}$\\ \hline
+$E =$       &	$0.00$   & 	$-0.00$   &	$-0.000$   &	$0.00$   & 	$0.00$    \\ \hline
+$D =$       &	$0.018149$    &	$0.048531$   & 	$0.001583$    &	$0.023893$   & 	$0.032310$    \\ \hline
+					
+$n = 100$  & average & med & $Z_R$ & $Z_Q$ & $Z_{tr},\;r=\frac{n}{4}$\\ \hline
+$E =$     &  	$0.00$    &	$0.00$    &	$0.0010 $  & 	$0.00$   & 	$0.00$    \\ \hline
+$D =$    &   	$0.010555$    &	$0.029134$    &	$0.000562$   & 	$0.014285$   & 	$0.020388$    \\
+\hline
+\end{tabular}
+\end{center}
+\end{table}
 
-\begin{figure}[H]
-  \centering
-  \includegraphics[width=\textwidth]{poissonFix.png} 
-  \caption{Распределение Пуассона}
-\end{figure}
+\begin{table}[H]
+\caption{\label{tab:poisson} Распределение Пуассона.}
+\begin{center}
+\begin{tabular}{|c|c|c|c|c|c|}
+\hline
+$n = 20$   & average & med & $Z_R$ & $Z_Q$ & $Z_{tr},\;r=\frac{n}{4}$\\ \hline
+$E =$     &  	$1.99$    &	$1.8$  &  	$2.5$   & 	$1.9$  &  	$1.8$    \\ \hline
+$D =$     &  	$0.096696$    &	$0.201928$    &	$0.325744$   & 	$0.126251$  &  	$0.125845$    \\ \hline
+					
+$n = 60$   & average & med & $Z_R$ & $Z_Q$ & $Z_{tr},\;r=\frac{n}{4}$\\ \hline
+$E =$      & 	$1.99$    &	$1.92$    &	$2.9$   & 	$1.94$    &	$1.84$    \\ \hline
+$D =$       &	$0.032178$    &	$0.063700$   & 	$0.245694$   & 	$0.033469$   & 	$0.046742$    \\ \hline
+					
+$n = 100$   & average & med & $Z_R$ & $Z_Q$ & $Z_{tr},\;r=\frac{n}{4}$\\ \hline
+$E =$      & 	$1.99$    &	$1.96$    &	$3.1$  &  	$1.96$   & 	$1.83$    \\ \hline
+$D =$      & 	$0.020435$    &	$0.030204$   & 	$0.239758$   & 	$0.018016$  &  	$0.026728$    \\
+\hline
+\end{tabular}
+\end{center}
+\end{table}
+
 
 \section{Обсуждение}
 \par При вычислении средних значений пришлось отбрасывать некоторое число знаков после запятой, так как получаемая дисперсия не могла гарантировать получаемое точное значение. \par Иными словами дисперсия может гарантировать порядок точности среднего значения только до первого значащего знака после запятой в дисперсии включительно. \par Единственным исключением [в отбрасывании знаков после запятой] стало стандартное распределение Коши, так как оно имеет бесконечную дисперсию, а значит может гарантировать сколь угодно большую точность.
