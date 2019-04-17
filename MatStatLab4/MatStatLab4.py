@@ -6,7 +6,7 @@ from scipy.stats import uniform
 from scipy.stats import poisson
 
 
-POISSON_PARAM = 3
+POISSON_PARAM = 2
 UNIFORM_FRONT = 4
 
 
