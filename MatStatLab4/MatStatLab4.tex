@@ -269,6 +269,12 @@ $X = \left(X_1,\ldots, X_n\right)$ есть одномерная выборка 
 \end{equation}
 где $K$ является ядром, а $h>0$ является сглаживающим параметром, и называется шириной полосы.
 
+В данной работе в качестве ядра была выбрана плотность вероятности стандартного нормального распределения \cite{link:pdf}:
+
+\begin{equation}
+    K(x) = \frac{1}{\sqrt{2\pi}}e^{-\frac{x^2}{2}}
+\end{equation}
+
 \section{Реализация}
 Для генерации выборки был использован $Python\;3.7$: модуль $random$ библиотеки $numpy$ \cite{numpy} для генерации случайных чисел с различными распределениями. 
 
@@ -396,6 +402,9 @@ $X = \left(X_1,\ldots, X_n\right)$ есть одномерная выборка 
     
     \bibitem{art}
     https://www.mql5.com/ru/articles/396
+    
+    \bibitem{link:pdf}
+    http://users.stat.umn.edu/~helwig/notes/den-Notes.pdf
 \end{thebibliography}
 
 \section{Приложения}
