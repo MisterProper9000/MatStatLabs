@@ -1,0 +1,356 @@
+\documentclass[a4]{article}
+\pagestyle{myheadings}
+
+%%%%%%%%%%%%%%%%%%%
+% Packages/Macros %
+%%%%%%%%%%%%%%%%%%%
+\usepackage{mathrsfs}
+
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\lhead{}
+\chead{}
+\rhead{}
+\lfoot{}
+\cfoot{} 
+\rfoot{\normalsize\thepage}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\newcommand{\RomanNumeralCaps}[1]
+    {\MakeUppercase{\romannumeral #1}}
+
+\usepackage{amssymb,latexsym}  % Standard packages
+\usepackage[utf8]{inputenc}
+\usepackage[russian]{babel}
+\usepackage{MnSymbol}
+\usepackage{mathrsfs}
+\usepackage{amsmath,amsthm}
+\usepackage{indentfirst}
+\usepackage{graphicx}%,vmargin}
+\usepackage{graphicx}
+\graphicspath{{pictures/}} 
+\usepackage{verbatim}
+\usepackage{color}
+\usepackage{color,colortbl}
+\usepackage[nottoc,numbib]{tocbibind}
+\usepackage{float}
+\usepackage{multirow}
+\usepackage{hhline}
+
+\usepackage{listings}
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{1,1,1}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+ 
+\lstdefinestyle{mystyle}{
+    backgroundcolor=\color{backcolour},   
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{magenta},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\footnotesize,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,                 
+    numbers=left,                    
+    numbersep=5pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=2
+}
+ 
+\lstset{style=mystyle}
+
+\usepackage{url}
+\urldef\myurl\url{foo%.com}
+\def\UrlBreaks{\do\/\do-}
+\usepackage{breakurl}
+\Urlmuskip=0mu plus 1mu
+
+
+
+\DeclareGraphicsExtensions{.pdf,.png,.jpg}% -- настройка картинок
+
+\usepackage{epigraph} %%% to make inspirational quotes.
+\usepackage[all]{xy} %for XyPic'a
+\usepackage{color} 
+\usepackage{amscd} %для коммутативных диграмм
+%\usepackage[colorlinks,urlcolor=red]{hyperref}
+
+%\renewcommand{\baselinestretch}{1.5}
+%\sloppy
+%\usepackage{listings}
+%\lstset{numbers=left}
+%\setmarginsrb{2cm}{1.5cm}{1cm}{1.5cm}{0pt}{0mm}{0pt}{13mm}
+
+
+\newtheorem{Lemma}{Лемма}[section]
+\newtheorem{Proposition}{Предложение}[section]
+\newtheorem{Theorem}{Теорема}[section]
+\newtheorem{Corollary}{Следствие}[section]
+\newtheorem{Remark}{Замечание}[section]
+\newtheorem{Definition}{Определение}[section]
+\newtheorem{Designations}{Обозначение}[section]
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%% 
+%Подготовка оглавления% 
+%%%%%%%%%%%%%%%%%%%%%%% 
+\usepackage[titles]{tocloft}
+\renewcommand{\cftdotsep}{2} %частота точек
+\renewcommand\cftsecleader{\cftdotfill{\cftdotsep}}
+\renewcommand{\cfttoctitlefont}{\hspace{0.38\textwidth} \LARGE\bfseries} 
+\renewcommand{\cftsecaftersnum}{.}
+\renewcommand{\cftsubsecaftersnum}{.}
+\renewcommand{\cftbeforetoctitleskip}{-1em} 
+\renewcommand{\cftaftertoctitle}{\mbox{}\hfill \\ \mbox{}\hfill{\footnotesize Стр.}\vspace{-0.5em}} 
+%\renewcommand{\cftchapfont}{\normalsize\bfseries \MakeUppercase{\chaptername} } 
+%\renewcommand{\cftsecfont}{\hspace{1pt}} 
+\renewcommand{\cftsubsecfont}{\hspace{1pt}} 
+%\renewcommand{\cftbeforechapskip}{1em} 
+\renewcommand{\cftparskip}{3mm} %определяет величину отступа в оглавлении
+\setcounter{tocdepth}{5} 
+\renewcommand{\listoffigures}{\begingroup %добавляем номер в список иллюстраций
+\tocsection
+\tocfile{\listfigurename}{lof}
+\endgroup}
+\renewcommand{\listoftables}{\begingroup %добавляем номер в список иллюстраций
+\tocsection
+\tocfile{\listtablename}{lot}
+\endgroup}
+
+
+%\renewcommand{\thelikesection}{(\roman{likesection})}
+%%%%%%%%%%%
+% Margins %
+%%%%%%%%%%%
+\addtolength{\textwidth}{0.7in}
+\textheight=630pt
+\addtolength{\evensidemargin}{-0.4in}
+\addtolength{\oddsidemargin}{-0.4in}
+\addtolength{\topmargin}{-0.4in}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%Переопределение chapter%%%%%% 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\empline}{\mbox{}\newline} 
+\newcommand{\likechapterheading}[1]{ 
+\begin{center} 
+\textbf{\MakeUppercase{#1}} 
+\end{center} 
+\empline} 
+
+%%%%%%%Запиливание переопределённого chapter в оглавление%%%%%% 
+\makeatletter 
+\renewcommand{\@dotsep}{2} 
+\newcommand{\l@likechapter}[2]{{\bfseries\@dottedtocline{0}{0pt}{0pt}{#1}{#2}}} 
+\makeatother 
+\newcommand{\likechapter}[1]{ 
+\likechapterheading{#1} 
+\addcontentsline{toc}{likechapter}{\MakeUppercase{#1}}} 
+
+
+
+
+\usepackage{xcolor}
+\usepackage{hyperref}
+\definecolor{linkcolor}{HTML}{000000} % цвет ссылок
+\definecolor{urlcolor}{HTML}{AA1622} % цвет гиперссылок
+ 
+\hypersetup{pdfstartview=FitH,  linkcolor=linkcolor,urlcolor=urlcolor, colorlinks=true}
+
+%%%%%%%%%%%%
+% Document %
+%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%главы -- section*%%%%%%
+%%%%section -- subsection%%%%
+%subsection -- subsubsection%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\def \newstr {\medskip \par \noindent} 
+
+
+
+\begin{document}
+\newcolumntype{g}{>{\columncolor{codegray}}c}
+
+
+
+\def\contentsname{\LARGE{Содержание}}
+\thispagestyle{empty}
+\begin{center} 
+\vspace{2cm} 
+{\Large \sc Санкт-Петербургский Политехнический}\\
+\vspace{2mm}
+{\Large \sc Университет} им. {\Large\sc Петра Великого}\\
+\vspace{1cm}
+{\large \sc Институт прикладной математики и механики\\ 
+\vspace{0.5mm}
+\textsc{}}\\ 
+\vspace{0.5mm}
+{\large\sc Кафедра прикладной математики}\\
+\vspace{15mm}
+%\rule[0.5ex]{\linewidth}{2pt}\vspace*{-\baselineskip}\vspace*{3.2pt} 
+%\rule[0.5ex]{\linewidth}{1pt}\\[\baselineskip] 
+{\huge \sc Лабораторная работа №$8$\\
+\vspace{6mm}
+ }
+\vspace*{2mm}
+%\rule[0.7ex]{\linewidth}{1pt}\vspace*{-\baselineskip}\vspace{3.2pt} 
+%\rule[0.5ex]{\linewidth}{2pt}\\ 
+\vspace{1cm}
+
+{\sc $3$ курс$,$ группа $33631/2$}
+
+\vspace{2cm} 
+Студент \hfill Д. А. Плаксин\\
+\vspace{1cm}
+Преподаватель \hfill Баженов А. Н.\\
+\vspace{20mm} 
+
+\end{center} 
+%\author{Я}
+\begin{center}
+\vfill {\large\textsc{Санкт-Петербург}}\\ 
+2019 г.
+\end{center}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\ \\[4cm]
+
+%\rm
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+\pagestyle{plain}
+
+%\begin{center}
+%\begin{abstract} 
+
+%\end{abstract}
+
+%\end{center}
+
+\newpage
+\tableofcontents{}
+\newpage
+\listoftables{}
+\newpage
+
+\section{Постановка задачи}
+
+Для двух выборок $20$ и $100$ элементов, сгенерированных согласно нормальному закону $N(x,0,1),$ для параметров масштаба и положения построить асимптотически нормальные интервальные оценки на основе точечных оценок метода максимального правдоподобия и классические интервальные оценки на основе статистик $\chi^2$ и Стьюдента. В качестве параметра надёжности взять $\gamma = 0.95.$
+
+\section{Теория}
+Оценкой максимального правдоподобия для математического ожидания  является среднее арифметическое: $\mu=\frac{1}{n}\sum\limits_{i=1}^nx_i.$
+
+Оценка максимального правдоподобия для дисперсии вычисляется по формуле: $\sigma^2 = \frac{1}{n}\sum\limits_{i=1}^n(x_i-\overline{x})^2.$
+
+Доверительным интервалом или интервальной оценкой числовой характеристики или параметра распределения $\theta$ с доверительной вероятностью $\gamma$ называется интервал со случайными границами $(\theta_1,\theta_2),$ содержащий параметр $\theta$ с вероятностью $\gamma$ \cite{8_1}.
+
+Функция распределения Стьюдента \cite{8_2}:
+\begin{equation}
+    T = \sqrt{n-1}\frac{\overline{x}-\mu}{\delta}
+\end{equation}
+
+Функция плотности распределения $\chi^2$ \cite{8_3}:
+\begin{equation}
+    f(x) = \begin{cases}
+    0,&x\leq 0\\
+    \frac{1}{2^\frac{n}{2}\Gamma\left(\frac{n}{2}\right)}x^{\frac{n}{2}-1}e^{-\frac{x}{2}},& x>0
+    \end{cases}
+\end{equation}
+
+Интервальная оценка математического ожидания \cite{8_4}:
+\begin{equation}
+    P=\left(\overline{x}-\frac{\sigma t_{1-\frac{a}{2}}(n-1)}{\sqrt{n-1}}<\mu<\overline{x}+\frac{\sigma t_{1-\frac{a}{2}}(n-1)}{\sqrt{n-1}}\right) = \gamma,
+\end{equation}
+где $t_{1-\frac{a}{2}}\;\--$ квантиль распределения Стьюдента порядка $1-\frac{a}{2}.$
+
+Интервальная оценка дисперсии \cite{8_2}:
+\begin{equation}
+    P=\left(\frac{\sigma\sqrt{n}}{\sqrt{\chi^2_{1-\frac{a}{2}}(n-1)}}<\sigma<\frac{\sigma\sqrt{n}}{\sqrt{\chi^2_\frac{a}{2}(n-1)}}\right) = \gamma,
+\end{equation}
+где $\chi_{1-\frac{a}{2}}^2,\;\chi_\frac{a}{2}^2\;\--$ квантили распределения Стьюдента порядков $1-\frac{a}{2}$ и $\frac{a}{2}$ соответственно.
+
+Асимптотическая интервальная оценка математического ожидания \cite{8_2}:
+\begin{equation}
+    P = \left(\overline{x}-\frac{\sigma u_{1-\frac{a}{2}}}{\sqrt{n}}<\mu<\overline{x}+\frac{\sigma u_{1-\frac{a}{2}}}{\sqrt{n}}\right)=\gamma,
+\end{equation}
+где $u_{1-\frac{a}{2}}\;\--$ квантиль нормального распределения $N(x,0,1)$ порядка $1-\frac{a}{2}.$
+
+\section{Реализация}
+Работы была выполнена на языке $Python 3.7.$
+Для генерации выборок использовался модуль \cite{numpy}.
+Для построения графиков использовалась библиотека matplotlib \cite{plotlib}.
+Функции распределения обрабатывались при помощи библиотеки scipy.stats \cite{skp}
+
+\section{Результаты}
+
+\begin{table}[H]
+\caption{Результаты}
+\label{tab:my_label1}
+\begin{center}
+\vspace{5mm}
+\begin{tabular}{|c|c|c|c|}
+\hline
+Метод & $n$&$\mu$&$\sigma$\\
+\hline
+&$20$&	$[-0.33527, 0.40768]$&		$[0.71165, 1.36749]$ \\
+\cline{2-4}
+\raisebox{1.5ex}[0cm][0cm]{На основе ММП}&100&	$[-0.20017, 0.16315]$&		$[0.79980, 1.05748]$\\
+\hline
+&20&	$[-0.37421, 0.44662]$&		$[0.75586, 1.11704]$ \\
+\cline{2-4}
+\raisebox{1.5ex}[0cm][0cm]{Асимптотический}&100	&$[-0.19705, 0.16003]$&	$[0.80188, 1.01998]$\\
+\hline
+\end{tabular}
+\end{center}
+\end{table}
+
+
+
+\section{Выводы}
+
+По полученным результатам видно, что оба подхода дают лучший результат на выборках большого объема. Если рассматривать результаты для выборки объема $n=20$ элементов, то видно, что интервал меньше и точнее в классической интервальной оценке.
+
+\begin{thebibliography}{}
+    \bibitem{numpy}  Модуль numpy  -  https://physics.susu.ru/vorontsov/language/numpy.html
+    
+    \bibitem{plotlib} 
+    Модуль matplotlib - https://matplotlib.org/users/index.html
+    
+    \bibitem{skp}
+    Модуль scipy - https://docs.scipy.org/doc/scipy/reference/
+    
+
+\bibitem{8_1}
+https://en.wikipedia.org/wiki/Confidence\_interval
+
+\bibitem{8_2}
+https://en.wikipedia.org/wiki/Student\%27s\_t-distribution
+
+\bibitem{8_3}
+https://en.wikipedia.org/wiki/Chi-squared\_distribution
+
+\bibitem{8_4}
+Шевляков Г. Л. Лекции по математической статистике, 2019.
+
+\end{thebibliography}
+
+\section{Приложения}
+
+
+Код отчёта:\; \url{https://github.com/MisterProper9000/MatStatLabs/blob/master/MatStatLab5/MatStatLab8.tex}
+
+Код лаборатрной:\; \url{https://github.com/MisterProper9000/MatStatLabs/blob/master/MatStatLab5/MatStatLab8.py}
+
+%\lstinputlisting[language=Python]{MatStatLab8.py}
+
+\end{document}
